@@ -213,30 +213,6 @@ $$C = \frac{4(4 - 1)}{2} = \frac{4 \times 3}{2} = \mathbf{6\text{ channels}}$$
 
 ---
 
-## 7. Presentation 2: Slide Structure & Assertion Titles (Rehearsal Guide: 4:00)
-
-| Time | Beat | Slide Title (Assertion Header) | Core Content & Demo Points |
-|---|---|---|---|
-| **0:00 - 0:40** | **Problem & Domain** | *Diagnostic delays in respiratory triage cost critical treatment windows* | Present the clinical workflow pain, prevalence, and why combining radiological imaging with structured text extraction creates immediate decision support. |
-| **0:40 - 1:30** | **Data Truth & Audit** | *Systematic dataset audits uncovered class imbalance and high-frequency demographic leakage* | Present quantitative audit findings (imbalance ratios, near-duplicates, distribution shifts) and how data cleaning safeguarded model integrity. |
-| **1:30 - 2:30** | **Model & Metric** | *Optimizing Sensitivity and Positive Predictive Value (PPV) minimizes life-threatening false negatives* | Justify choice of metric over raw accuracy; discuss single-pass test set evaluation, macro-F1, and operating threshold selection ($0.5$). |
-| **2:30 - 3:30** | **Live API Demo** | *Low-latency, privacy-preserving microservice provides deterministic triage and defense-in-depth* | Live execution via `/docs` or `curl`: show `/predict` output, show `/analyze` with automated CNIC/Phone redaction and urgency trigger, demonstrate rejection of invalid file type (`415`). |
-| **3:30 - 4:00** | **Explainability & Limits** | *Saliency heatmaps identify anatomical focal zones but require strict clinical guardrails* | Grad-CAM heatmap visualization; explicitly outline out-of-scope conditions (pediatric cases, severe motion artifacts) and emphasize assistive decision-support bounds. |
-
----
-
-## 8. LinkedIn Post Draft: Shipping the Clinical AI API & Teaming Up
-
-```text
-🚀 Excited to share that I have officially shipped the production API for Project 2 in our Applied AI course!
-
-Over the past few weeks, we moved from raw clinical data auditing to deep learning model development, and now to a hardened, low-latency web service built with FastAPI and PyTorch:
-
-🔹 Multimodal Clinical Triage: Built /predict and /analyze endpoints that synthesize vision model inferences with clinical notes, triggering urgent referrals when high-risk patterns arise.
-🔹 Privacy by Design: Embedded automated regex-based redaction for sensitive PII (CNICs and phone numbers) to ensure HIPAA/GDPR-compliant data handling before any inference or storage.
-🔹 High-Performance Architecture: Leveraged FastAPI lifespan events for single-pass checkpoint loading, paired with threadpool offloading to keep asynchronous event loops unblocked under heavy load.
-🔹 Rigorous Testing & Capacity Planning: Automated 8-test pytest suite guaranteeing strict schema adherence and mathematical parity with direct model inference. Benchmark achieved a p50 latency of 251 ms on high-res radiographs (~3.5 req/s per worker), scaling to over 240,000 requests/day at safe utilization using Little’s Law.
-
 Next up: heading into Projects 3 & 4 focusing on LLMs, retrieval-augmented generation (RAG), and agentic workflows. Looking forward to teaming up! 💡
 
 #MachineLearning #FastAPI #PyTorch #MLOps #AppliedAI #ClinicalAI #Python #SoftwareEngineering
