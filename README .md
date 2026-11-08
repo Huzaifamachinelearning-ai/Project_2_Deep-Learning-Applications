@@ -179,14 +179,14 @@ Copy this block, fill it in, and add a row to the Index table.
 
 **Results**
 
-| Metric                    | Value                      |
-|:--------------------------|:---------------------------|
-| Tests passed              | [8 / 8]                    |
-| Latency p50               | [__] ms                    |
-| Latency p95               | [__] ms                    |
-| Hardware                  | [CPU model, RAM]           |
-| Throughput (1 worker)     | [__] requests/s            |
-| Capacity (Little's law)   | [__] requests/day          |
+| Metric                  | Value                                      |
+|:------------------------|:-------------------------------------------|
+| Tests passed            | 8 / 8                                      |
+| Latency p50             | 251 ms                                     |
+| Latency p95             | 522 ms (max 775 ms)                        |
+| Hardware                | Intel 4 cores / 8 threads, 7.88 GB RAM, Windows 10, CPU-only PyTorch |
+| Throughput (1 worker)   | ~3.5 requests/s                            |
+| Capacity (Little's law) | 1 / 0.251 s ≈ 3.98 req/s ≈ 344,223 requests/day |
 
 **Key takeaways**
 
