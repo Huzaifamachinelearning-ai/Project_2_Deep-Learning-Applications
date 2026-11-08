@@ -211,8 +211,6 @@ Using the channel formula $C = \frac{n(n - 1)}{2}$:
 $$C = \frac{4(4 - 1)}{2} = \frac{4 \times 3}{2} = \mathbf{6\text{ channels}}$$
 *(Between persons $\{A,B\}$, $\{A,C\}$, $\{A,D\}$, $\{B,C\}$, $\{B,D\}$, $\{C,D\}$).*
 
----
-
 Next up: heading into Projects 3 & 4 focusing on LLMs, retrieval-augmented generation (RAG), and agentic workflows. Looking forward to teaming up! 💡
 
 #MachineLearning #FastAPI #PyTorch #MLOps #AppliedAI #ClinicalAI #Python #SoftwareEngineering
