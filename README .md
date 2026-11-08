@@ -159,19 +159,41 @@ Fine-tuning improved validation macro-F1 from 0.881 to 0.945 (+0.064).
 Copy this block, fill it in, and add a row to the Index table.
 
 ```markdown
-## Week N: <Title>
+```
+## Week 8: Ship It, Show It, Team Up
 
-**Goal:** <one sentence>
-**Dataset:** [<name>](<link>). <size and splits>
+**Goal:** Turn the Project 2 system (Week 6 image model + Week 7 text evidence) into a tested FastAPI web service, present it with a live API call, and form a team for Projects 3 and 4.
 
 **Approach**
-- <key steps>
+
+| Stage            | What was done                                                                                                           |
+|:-----------------|:------------------------------------------------------------------------------------------------------------------------|
+| API              | `app.py` with `/health`, `/predict` and `/analyze`. Model loaded once in `lifespan()`, inference run via `run_in_threadpool()`. |
+| Configuration    | `POSITIVE = PNEUMONIA`, `URGENT` words set for the clinical domain, 5 MB upload limit.                                    |
+| Error handling   | 415 wrong file type, 413 file too large, 400 corrupt image, 422 missing field or long note. No stack traces.             |
+| Privacy          | CNIC and phone numbers masked before extraction, so no identifier appears in any response.                               |
+| Tests            | `test_api.py`: 8 tests covering health, schema, parity with the direct model, 415, 413, 400, 422 and PII leak.           |
+| Benchmark        | `bench.py`: 50 requests against `/predict` on a running server.                                                          |
+| Presentation 2   | Five slides (`slides.html`), live API call, backup screenshots of a good call and a rejected call.                       |
+| Team             | 60-second problem pitch, ranked top 3 problems, team charter and shared repository.                                      |
 
 **Results**
-| Metric | Value |
-| :--- | :--- |
-| ... | ... |
+
+| Metric                    | Value                      |
+|:--------------------------|:---------------------------|
+| Tests passed              | [8 / 8]                    |
+| Latency p50               | [__] ms                    |
+| Latency p95               | [__] ms                    |
+| Hardware                  | [CPU model, RAM]           |
+| Throughput (1 worker)     | [__] requests/s            |
+| Capacity (Little's law)   | [__] requests/day          |
 
 **Key takeaways**
-- <findings, errors, limitations>
-```
+
+- **Parity test:** the API returns the same probabilities as calling the model directly, so serving adds no hidden preprocessing drift.
+- **Load once, serve many:** loading the model in `lifespan()` instead of inside the endpoint avoids a reload on every request.
+- **Reject bad input early:** wrong type, oversized and corrupt files get clear 4xx codes instead of a 500.
+- **Mask before extract:** the PII leak test fails if any part of a phone number or CNIC appears in the response.
+- **Limitations:** decision support only, a qualified human decides. Same single-center pediatric scope as Week 6.
+
+**Files:** `app.py`, `test_api.py`, `bench.py`, `sample.jpeg`, `slides.html`, `screenshot_good_call.png`, `screenshot_rejected_call.png`
